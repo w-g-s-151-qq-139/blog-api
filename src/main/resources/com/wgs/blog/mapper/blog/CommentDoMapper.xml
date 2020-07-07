@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wgs.blog.dao.blog.CommentDoMapper" >
+  <resultMap id="BaseResultMap" type="com.wgs.blog.entity.blog.CommentDo" >
+    <constructor >
+      <idArg column="id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="createrid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="comment_blog_id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="comment_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="content" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="created" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="appreciate" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, createrid, comment_blog_id, comment_id, content, created, appreciate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from comment
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from comment
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.wgs.blog.entity.blog.CommentDo" >
+    insert into comment (id, createrid, comment_blog_id, 
+      comment_id, content, created, 
+      appreciate)
+    values (#{id,jdbcType=VARCHAR}, #{createrid,jdbcType=INTEGER}, #{commentBlogId,jdbcType=VARCHAR}, 
+      #{commentId,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}, 
+      #{appreciate,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wgs.blog.entity.blog.CommentDo" >
+    insert into comment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createrid != null" >
+        createrid,
+      </if>
+      <if test="commentBlogId != null" >
+        comment_blog_id,
+      </if>
+      <if test="commentId != null" >
+        comment_id,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="created != null" >
+        created,
+      </if>
+      <if test="appreciate != null" >
+        appreciate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="createrid != null" >
+        #{createrid,jdbcType=INTEGER},
+      </if>
+      <if test="commentBlogId != null" >
+        #{commentBlogId,jdbcType=VARCHAR},
+      </if>
+      <if test="commentId != null" >
+        #{commentId,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null" >
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="appreciate != null" >
+        #{appreciate,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wgs.blog.entity.blog.CommentDo" >
+    update comment
+    <set >
+      <if test="createrid != null" >
+        createrid = #{createrid,jdbcType=INTEGER},
+      </if>
+      <if test="commentBlogId != null" >
+        comment_blog_id = #{commentBlogId,jdbcType=VARCHAR},
+      </if>
+      <if test="commentId != null" >
+        comment_id = #{commentId,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null" >
+        created = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="appreciate != null" >
+        appreciate = #{appreciate,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wgs.blog.entity.blog.CommentDo" >
+    update comment
+    set createrid = #{createrid,jdbcType=INTEGER},
+      comment_blog_id = #{commentBlogId,jdbcType=VARCHAR},
+      comment_id = #{commentId,jdbcType=INTEGER},
+      content = #{content,jdbcType=VARCHAR},
+      created = #{created,jdbcType=TIMESTAMP},
+      appreciate = #{appreciate,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

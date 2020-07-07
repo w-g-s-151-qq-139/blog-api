@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wgs.blog.dao.blog.BlogDoMapper" >
+  <resultMap id="BaseResultMap" type="com.wgs.blog.entity.blog.BlogDo" >
+    <constructor >
+      <idArg column="id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="title" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="label" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="creater_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="appreciate" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="browse" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.wgs.blog.entity.blog.BlogDo" >
+    <constructor >
+      <idArg column="id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="title" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="label" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="creater_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="appreciate" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="browse" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="content" jdbcType="LONGVARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, title, label, create_time, creater_id, status, appreciate, browse
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from blog
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from blog
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.wgs.blog.entity.blog.BlogDo" >
+    insert into blog (id, title, label, 
+      create_time, creater_id, status, 
+      appreciate, browse, content
+      )
+    values (#{id,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{label,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createrId,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{appreciate,jdbcType=INTEGER}, #{browse,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wgs.blog.entity.blog.BlogDo" >
+    insert into blog
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="label != null" >
+        label,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createrId != null" >
+        creater_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="appreciate != null" >
+        appreciate,
+      </if>
+      <if test="browse != null" >
+        browse,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="label != null" >
+        #{label,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createrId != null" >
+        #{createrId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="appreciate != null" >
+        #{appreciate,jdbcType=INTEGER},
+      </if>
+      <if test="browse != null" >
+        #{browse,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wgs.blog.entity.blog.BlogDo" >
+    update blog
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="label != null" >
+        label = #{label,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createrId != null" >
+        creater_id = #{createrId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="appreciate != null" >
+        appreciate = #{appreciate,jdbcType=INTEGER},
+      </if>
+      <if test="browse != null" >
+        browse = #{browse,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wgs.blog.entity.blog.BlogDo" >
+    update blog
+    set title = #{title,jdbcType=VARCHAR},
+      label = #{label,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      creater_id = #{createrId,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      appreciate = #{appreciate,jdbcType=INTEGER},
+      browse = #{browse,jdbcType=INTEGER},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wgs.blog.entity.blog.BlogDo" >
+    update blog
+    set title = #{title,jdbcType=VARCHAR},
+      label = #{label,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      creater_id = #{createrId,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      appreciate = #{appreciate,jdbcType=INTEGER},
+      browse = #{browse,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

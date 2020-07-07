@@ -1,0 +1,47 @@
+server:
+  port: 8089
+spring:
+  application:
+    name: blog
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/blog?characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
+    username: root
+    password: wgs151qq139
+
+  #redis配置
+  redis:
+    #Redis服务器地址
+    host: localhost
+    #Redis服务器连接端口
+    port: 6379
+    #Redis数据库索引（默认为0）
+    database: 0
+    #连接超时时间（毫秒）
+    timeout: 5000
+    jedis:
+      pool:
+        #连接池最大连接数（使用负值表示没有限制）
+        max-active: 50
+        #连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-wait: 3000
+        #连接池中的最大空闲连接
+        max-idle: 20
+        #连接池中的最小空闲连接
+        min-idle: 2
+
+mybatis:
+  mapper-locations: classpath:com/wgs/blog/mapper/blog/*.xml
+  type-aliases-package: com/wgs/blog/entity/blog
+config:
+  jwt:
+    # 加密密钥
+    secret: grsgdgr4gds<gdfd
+    # token有效时长
+    #expire: 3600
+    # header 名称
+    header: token
+
+
+
+
