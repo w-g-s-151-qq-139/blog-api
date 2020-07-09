@@ -52,6 +52,7 @@ public class UserController {
                 int lastIndexOf = originalFilename.lastIndexOf(".");
                 String filename = System.currentTimeMillis() + originalFilename.substring(lastIndexOf, originalFilename.length());
                 String newCompanyImagepath = "D:\\WebStorm 2020.1.1\\blog2\\src\\assets\\upload\\" +filename;
+                //String newCompanyImagepath = "/root/java/blogPic/" +filename;
                 data.put("filename", filename);
                 File newFile = new File(newCompanyImagepath);
                 if (!newFile.exists()) {

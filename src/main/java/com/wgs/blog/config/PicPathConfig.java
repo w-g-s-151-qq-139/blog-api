@@ -10,6 +10,7 @@ public class PicPathConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/images/**").addResourceLocations("file:D:\\WebStorm 2020.1.1\\blog2\\src\\assets\\upload\\");
+        //registry.addResourceHandler("/images/**").addResourceLocations("file:/root/java/blogPic/");
     }
 
 }
